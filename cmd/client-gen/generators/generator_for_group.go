@@ -104,7 +104,7 @@ func (g *genGroup) GenerateType(c *generator.Context, t *types.Type, w io.Writer
 		"RESTHTTPClientFor":                c.Universe.Function(types.Name{Package: "k8s.io/client-go/rest", Name: "HTTPClientFor"}),
 		"restRESTClientFor":                c.Universe.Function(types.Name{Package: "k8s.io/client-go/rest", Name: "RESTClientFor"}),
 		"restRESTClientForConfigAndClient": c.Universe.Function(types.Name{Package: "k8s.io/client-go/rest", Name: "RESTClientForConfigAndClient"}),
-		"SchemeGroupVersion":               c.Universe.Variable(types.Name{Package: g.inputPackage, Name: "SchemeGroupVersion"}),
+		"GroupVersion":                     c.Universe.Variable(types.Name{Package: g.inputPackage, Name: "GroupVersion"}),
 	}
 	sw.Do(groupInterfaceTemplate, m)
 	sw.Do(groupClientTemplate, m)
@@ -253,7 +253,7 @@ func setConfigDefaults(config *$.restConfig|raw$) error {
 
 var setClientDefaultsTemplate = `
 func setConfigDefaults(config *$.restConfig|raw$) error {
-	gv := $.SchemeGroupVersion|raw$
+	gv := $.GroupVersion|raw$
 	config.GroupVersion =  &gv
 	config.APIPath = $.apiPath$
 	config.NegotiatedSerializer = scheme.Codecs.WithoutConversion()

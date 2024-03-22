@@ -105,7 +105,7 @@ func (g *genFakeForType) GenerateType(c *generator.Context, t *types.Type, w io.
 		"GroupGoName":        g.groupGoName,
 		"Version":            namer.IC(g.version),
 		"version":            g.version,
-		"SchemeGroupVersion": c.Universe.Type(types.Name{Package: t.Name.Package, Name: "SchemeGroupVersion"}),
+		"GroupVersion": c.Universe.Type(types.Name{Package: t.Name.Package, Name: "GroupVersion"}),
 		"CreateOptions":      c.Universe.Type(types.Name{Package: "k8s.io/apimachinery/pkg/apis/meta/v1", Name: "CreateOptions"}),
 		"DeleteOptions":      c.Universe.Type(types.Name{Package: "k8s.io/apimachinery/pkg/apis/meta/v1", Name: "DeleteOptions"}),
 		"GetOptions":         c.Universe.Type(types.Name{Package: "k8s.io/apimachinery/pkg/apis/meta/v1", Name: "GetOptions"}),
@@ -322,11 +322,11 @@ type Fake$.type|publicPlural$ struct {
 `
 
 var resource = `
-var $.type|allLowercasePlural$Resource = $.SchemeGroupVersion|raw$.WithResource("$.type|resource$")
+var $.type|allLowercasePlural$Resource = $.GroupVersion|raw$.WithResource("$.type|resource$")
 `
 
 var kind = `
-var $.type|allLowercasePlural$Kind = $.SchemeGroupVersion|raw$.WithKind("$.type|singularKind$")
+var $.type|allLowercasePlural$Kind = $.GroupVersion|raw$.WithKind("$.type|singularKind$")
 `
 
 var listTemplate = `
